@@ -12,6 +12,8 @@ import {CategoriesComponent} from './categories/categories.component';
 import {AuthorsComponent} from './authors/authors.component';
 import {TasksComponent} from './tasks/tasks.component';
 import {ProgramsComponent} from './programs/programs.component';
+import { BookComponent } from './book/book.component';
+import { ConfirmationDialogComponent } from './modal/confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import {ProgramsComponent} from './programs/programs.component';
     CategoriesComponent,
     AuthorsComponent,
     TasksComponent,
-    ProgramsComponent
+    ProgramsComponent,
+    BookComponent,
+    ConfirmationDialogComponent
 
   ],
   imports: [

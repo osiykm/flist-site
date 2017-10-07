@@ -1,0 +1,61 @@
+<div class="row" *ngIf="book">
+  <div class="col-lg-5 col-md-8 col-sm-12 col-xs-12">
+    <div class="card">
+      <div class="card-header">
+        {{book.name}}<span class="label"
+                           [ngClass]="{'label-success': book.status==='PUBLISHED' || book.status==='COMPLETED',
+                            'label-warning': book.status==='UNPUBLISHED'}">{{book.status.toLowerCase()}}</span>
+      </div>
+      <div class="card-block">
+        <div class="card-text">
+          <div class="row">
+            <div class="col-lg-2">Author:</div>
+            <div class="col-lg-10"><a class="card-link" href="{{book.author.url}}"
+                                      target="_blank">{{book.author.name}}</a></div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-2">Categories:</div>
+            <div class="col-lg-10"><span *ngFor="let category of book.categories; let isLast=last">{{category.name}}{{isLast ? '' : ', '}}</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-2">Created:</div>
+            <div class="col-lg-10">{{book.created | date}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-2">Updated:</div>
+            <div class="col-lg-10">{{book.updated | date}}
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-2">Description:</div>
+            <div class="col-lg-10">{{book.description}}</div>
+          </div>
+
+          <div class="row">
+            <div class="col-xs-2">Commentary:</div>
+            <div class="col-xs-10" [innerHTML]="book.commentary"></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="card-footer">
+        <button class="btn btn-sm btn-success" *ngIf="book.status.toLowerCase()==='unpublished'">
+          <clr-icon shape="check"></clr-icon>
+          published
+        </button>
+        <button class="btn btn-sm btn-primary">Edit</button>
+        <button class="btn btn-sm btn-danger">
+          <clr-icon shape="trash"></clr-icon>
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
