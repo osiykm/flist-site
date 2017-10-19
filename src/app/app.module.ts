@@ -12,8 +12,10 @@ import {CategoriesComponent} from './categories/categories.component';
 import {AuthorsComponent} from './authors/authors.component';
 import {TasksComponent} from './tasks/tasks.component';
 import {ProgramsComponent} from './programs/programs.component';
-import { BookComponent } from './book/book.component';
-import { ConfirmationDialogComponent } from './modal/confirmation-dialog/confirmation-dialog.component';
+import {BookComponent} from './book/book.component';
+import {HttpService} from './http.service';
+import {BookEditComponent} from './modals/book-edit/book-edit.component';
+import { BookCategoriesComponent } from './book-categories/book-categories.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { ConfirmationDialogComponent } from './modal/confirmation-dialog/confirm
     TasksComponent,
     ProgramsComponent,
     BookComponent,
-    ConfirmationDialogComponent
+    BookEditComponent,
+    BookCategoriesComponent
 
   ],
   imports: [
@@ -36,7 +39,7 @@ import { ConfirmationDialogComponent } from './modal/confirmation-dialog/confirm
     ClarityModule.forRoot(),
     ROUTING
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

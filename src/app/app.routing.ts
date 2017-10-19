@@ -13,7 +13,8 @@ export const ROUTES: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'authors', component: AuthorsComponent},
   {path: 'categories', component: CategoriesComponent},
-  {path: 'books', component: BooksComponent},
+  {path: 'books', redirectTo: 'books/0', pathMatch: 'full'},
+  {path: 'books/:page', component: BooksComponent},
   {path: 'tasks', component: TasksComponent},
   {path: 'programs', component: ProgramsComponent}
 ];

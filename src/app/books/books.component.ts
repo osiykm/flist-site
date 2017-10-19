@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import {Response} from '@angular/http';
 import {Book} from '../objects/book';
+import {HttpService} from '../http.service';
+import {ActivatedRoute, ParamMap} from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'app-books',
@@ -9,13 +12,17 @@ import {Book} from '../objects/book';
 })
 export class BooksComponent implements OnInit {
   books: Book[];
+  page: any;
 
-  constructor(private http: Http) {
+  constructor(private route: ActivatedRoute, private httpService: HttpService) {
   }
 
   ngOnInit() {
-    this.http.get('http://localhost:5050/books').subscribe((res: Response) => {
-      this.books = res.json()['_embedded'].books;
-    });
+    this.route.paramMap.subscribe(params =>
+      this.httpService.getBooks(+params.get('page')).then((res: Response) => {
+          this.books = res.json()['_embedded'].books;
+          this.page = res.json()['page'];
+        }
+      ));
   }
 }

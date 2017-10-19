@@ -8,18 +8,21 @@
       </div>
       <div class="card-block">
         <div class="card-text">
-          <div class="row">
+          <div class="row" *ngIf="author">
             <div class="col-lg-2">Author:</div>
-            <div class="col-lg-10"><a class="card-link" href="{{book.author.url}}"
-                                      target="_blank">{{book.author.name}}</a></div>
+            <div class="col-lg-10"><a class="card-link" href="{{author.url}}"
+                                      target="_blank">{{author.name}}</a></div>
           </div>
-
-          <div class="row">
+          <div class="row" *ngIf="categories">
             <div class="col-lg-2">Categories:</div>
-            <div class="col-lg-10"><span *ngFor="let category of book.categories; let isLast=last">{{category.name}}{{isLast ? '' : ', '}}</span>
+            <div class="col-lg-10"><span *ngFor="let category of categories; let isLast=last">{{category.name}}{{isLast ? '' : ', '}}</span>
             </div>
           </div>
-
+          <div class="row">
+            <div class="col-lg-2">url:</div>
+            <div class="col-lg-10"><a target="_blank" href="{{book.url}}">{{book.url}}</a>
+            </div>
+          </div>
           <div class="row">
             <div class="col-lg-2">Created:</div>
             <div class="col-lg-10">{{book.created | date}}
@@ -46,12 +49,13 @@
       </div>
 
       <div class="card-footer">
-        <button class="btn btn-sm btn-success" *ngIf="book.status.toLowerCase()==='unpublished'">
+        <button class="btn btn-sm btn-success-outline" *ngIf="book.status.toLowerCase()==='unpublished'" (click)="published()">
           <clr-icon shape="check"></clr-icon>
           published
         </button>
-        <button class="btn btn-sm btn-primary">Edit</button>
-        <button class="btn btn-sm btn-danger">
+        <app-book-edit [(book)]="book"></app-book-edit>
+        <app-book-categories [(book)]="book" [(bookCategories)]="categories"></app-book-categories>
+        <button class="btn btn-sm btn-outline-danger" (click)="deleted()">
           <clr-icon shape="trash"></clr-icon>
           Delete
         </button>

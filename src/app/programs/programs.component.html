@@ -1,3 +1,10 @@
-<p>
-  programs works!
-</p>
+<table class="table">
+  <tbody>
+  <tr *ngFor="let program of programs">
+    <td>{{program.code}}</td>
+    <td>{{program.status}}</td>
+    <td><button (click)="start(program.code)" class="btn btn-sm btn-success-outline" *ngIf="program.status=='STOPPED'">start</button>
+      <button (click)="start(program.code)" class="btn btn-sm btn-warning-outline" *ngIf="program.status=='RUNNING'">stop</button></td>
+  </tr>
+  </tbody>
+</table>
